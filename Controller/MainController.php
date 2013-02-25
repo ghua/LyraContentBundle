@@ -26,7 +26,7 @@ class MainController extends ContainerAware
      *
      * @param string $path node path
      */
-    public function showAction($path)
+    public function showAction($locale, $path)
     {
         $path = $this->container->get('lyra_content.node_manager')
             ->findPublishedPathNodes(trim($path, '/'));
@@ -41,6 +41,10 @@ class MainController extends ContainerAware
 
         $item = $this->container->get('lyra_content.node_manager')
             ->findNodeContent($node);
+            
+        $this->container->get('doctrine.orm.entity_manager')
+            ->getRepository('Gedmo\Translatable\Entity\Translation')
+            ->findTranslations($item);
 
         return $this->container
             ->get('templating')

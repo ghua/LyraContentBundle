@@ -28,8 +28,9 @@
         <default key="_controller">LyraContentBundle:Page:new</default>
     </route>
 
-    <route id="lyra_content_show" pattern="/{path}">
+    <route id="lyra_content_show" pattern="/{locale}/{path}">
         <default key="_controller">LyraContentBundle:Main:show</default>
+        <requirement key="locale">[a-z]{3}</requirement>
         <requirement key="path">.*</requirement>
     </route>
 
