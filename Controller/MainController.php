@@ -41,10 +41,6 @@ class MainController extends ContainerAware
 
         $item = $this->container->get('lyra_content.node_manager')
             ->findNodeContent($node);
-            
-        $this->container->get('doctrine.orm.entity_manager')
-            ->getRepository('Gedmo\Translatable\Entity\Translation')
-            ->findTranslations($item);
 
         return $this->container
             ->get('templating')
