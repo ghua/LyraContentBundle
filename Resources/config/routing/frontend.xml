@@ -33,5 +33,4 @@
         <requirement key="locale">[a-z]{3}</requirement>
         <requirement key="path">.*</requirement>
     </route>
-
 </routes>
