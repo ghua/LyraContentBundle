@@ -6,11 +6,15 @@
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO"/>
         </id>
-        <field name="title" column="title" type="string" length="255" />
+        <field name="title" column="title" type="string" length="255">
+            <gedmo:translatable/>
+        </field>
         <field name="slug" column="slug" type="string" length="255" />
         <field name="path" column="path" type="string" length="255" nullable="true" />
         <field name="published" column="is_published" type="boolean" />
-        <field name="link_title" column="link_title" type="string" length="255" nullable="true" />
+        <field name="link_title" column="link_title" type="string" length="255" nullable="true">
+            <gedmo:translatable/>
+        </field>
         <field name="lft" column="lft" type="integer">
             <gedmo:tree-left/>
         </field>
@@ -29,8 +33,12 @@
         </many-to-one>
 
         <one-to-many field="children" target-entity="Lyra\ContentBundle\Entity\Node" mapped-by="parent">
+            <order-by>
+                <order-by-field name="lft" direction="ASC" />
+            </order-by>
         </one-to-many>
         <gedmo:tree type="nested"/>
+        <gedmo:translation entity="Gedmo\Translatable\Entity\Translation" locale="language"/>
     </entity>
 
 </doctrine-mapping>

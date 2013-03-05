@@ -32,6 +32,8 @@ class Node extends AbstractNode
      * @var integer
      */
     protected $lvl;
+    
+    private $language;
 
     public function getLeft()
     {
@@ -71,5 +73,10 @@ class Node extends AbstractNode
     public function __toString()
     {
         return str_repeat('- ', $this->getLevel()) . $this->getTitle();
+    }
+    
+    public function setTranslatableLanguage($language)
+    {
+        $this->language = $language;
     }
 }

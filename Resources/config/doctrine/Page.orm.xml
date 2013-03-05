@@ -26,7 +26,6 @@
                 <cascade-all/>
             </cascade>
             <join-column name="node_id" referenced-column-name="id" on-delete="CASCADE" on-update="CASCADE" />
-
         </one-to-one>
 
         <gedmo:translation entity="Gedmo\Translatable\Entity\Translation" locale="language"/>
