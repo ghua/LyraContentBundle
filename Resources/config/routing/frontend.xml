@@ -7,6 +7,11 @@
     <route id="lyra_content_homepage" pattern="/">
         <default key="_controller">LyraContentBundle:Main:home</default>
     </route>
+    
+    <route id="lyra_content_locale_homepage" pattern="/{locale}/">
+        <default key="_controller">LyraContentBundle:Main:home</default>
+        <requirement key="locale">[a-z]{3}</requirement>
+    </route>
 
     <route id="lyra_content_move" pattern="manage/{id}/move/{dir}">
         <default key="_controller">LyraContentBundle:Admin:move</default>
