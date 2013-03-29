@@ -8,6 +8,8 @@
  * This source file is subject to the MIT license. Full copyright and license
  * information are in the LICENSE file distributed with this source code.
  */
+## alter table node add column roles character varying[];
+
 
 namespace Lyra\ContentBundle\Entity;
 
@@ -34,6 +36,12 @@ class Node extends AbstractNode
     protected $lvl;
     
     private $language;
+    
+    /**
+     * @var pgarray $roles
+     * 
+     */
+    protected $roles;
 
     public function getLeft()
     {
@@ -79,4 +87,45 @@ class Node extends AbstractNode
     {
         $this->language = $language;
     }
+    
+    /**
+     * Add role
+     *
+     * @param string $roles
+     */
+    public function addRoles($roles) {
+        $this->roles[] = $roles;
+    }
+
+    /**
+     * Set role
+     *
+     * @param string $roles
+     */
+    public function setRoles($roles)
+    {
+        // vendor/symfony/src/Symfony/Component/Form/Util/PropertyPath.php
+        // can't select between  add# & set#.
+        if(is_string($roles)) {
+            $this->addRoles($roles);
+        } else {
+            $this->roles = $roles;
+        }
+    }
+
+    /**
+     * Get roles
+     *
+     * @return pgarray 
+     */
+    public function getRoles($index = null)
+    {
+         if(!is_null($this->roles) && !is_null($index)
+           and array_key_exists($index, $this->roles)) {
+            return $this->roles[$index];
+        } else {
+            return $this->roles;
+        }
+    }
+    
 }
