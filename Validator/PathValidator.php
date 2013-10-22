@@ -37,14 +37,11 @@ class PathValidator extends ConstraintValidator
         return $this->nodeManager;
     }
 
-    public function isValid($object, Constraint $constraint)
+    public function validate($object, Constraint $constraint)
     {
         if (!$this->getNodeManager()->validateUniquePath($object)) {
-            $this->setMessage($constraint->message);
-
-            return false;
+            $this->context->addViolation($constraint->message);
         }
-
-        return true;
+        return;
     }
 }
