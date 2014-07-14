@@ -32,6 +32,12 @@
             <join-column name="parent_id" referenced-column-name="id" on-delete="CASCADE"/>
             <gedmo:tree-parent/>
         </many-to-one>
+        
+        <one-to-one field="page" target-entity="Page" mapped-by="node">
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
 
         <one-to-many field="children" target-entity="Lyra\ContentBundle\Entity\Node" mapped-by="parent">
             <order-by>
