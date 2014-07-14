@@ -63,6 +63,11 @@ abstract class Node implements NodeInterface
      * @var Doctrine\Common\Collections\ArrayCollection
      */
     protected $children;
+    
+    /**
+     * @var Page
+     */
+    protected $page;
 
     public function getId()
     {
@@ -152,5 +157,15 @@ abstract class Node implements NodeInterface
     public function getChildren()
     {
         return $this->children;
+    }
+    
+    public function getPage()
+    {
+        return $this->page;
+    }
+    
+    public function setPage($page)
+    {
+        $this->page = $page;
     }
 }
